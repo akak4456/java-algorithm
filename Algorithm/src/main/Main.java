@@ -18,6 +18,12 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		A = Integer.parseInt(st.nextToken());
 		B = Integer.parseInt(st.nextToken());
-		System.out.println((double) A / B);
+		if(A > B) {
+			System.out.println(">");
+		} else if(A < B) {
+			System.out.println("<");
+		} else {
+			System.out.println("==");
+		}
 	}
 }
