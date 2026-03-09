@@ -12,18 +12,16 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main { 
-	private static int A, B;
+	private static int N;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		A = Integer.parseInt(st.nextToken());
-		B = Integer.parseInt(st.nextToken());
-		if(A > B) {
-			System.out.println(">");
-		} else if(A < B) {
-			System.out.println("<");
-		} else {
-			System.out.println("==");
+		// StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(br.readLine());
+		for(int i=1;i<=N;i++) {
+			for(int j=1;j<=i;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
 		}
 	}
 }
