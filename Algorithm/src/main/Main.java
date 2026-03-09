@@ -12,14 +12,12 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main { 
-	private static String S;
-	private static int N;
+	private static int A, B;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st = new StringTokenizer(br.readLine());
-		S = br.readLine();
-		for(int i=0;i<S.length();i++) {
-			System.out.print(S.charAt(S.length() - i - 1));
-		}
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		A = Integer.parseInt(st.nextToken());
+		B = Integer.parseInt(st.nextToken());
+		System.out.println(A + B);
 	}
 }
