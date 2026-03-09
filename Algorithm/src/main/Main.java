@@ -17,8 +17,8 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		for(int i = 1;i<=9;i++) {
-			System.out.println(N + " * " + i + " = " + (N*i));
+		for(int i = 1;i<=N;i++) {
+			System.out.println(i);
 		}
 	}
 }
