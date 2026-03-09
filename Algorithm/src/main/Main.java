@@ -17,8 +17,12 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		for(int i = 1;i<=N;i++) {
-			System.out.println(i);
+		if(N%4 == 0 && N%100 != 0) {
+			System.out.println(1);
+		} else if(N % 400 == 0) {
+			System.out.println(1);
+		} else {
+			System.out.println(0);
 		}
 	}
 }
