@@ -17,12 +17,16 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		if(N%4 == 0 && N%100 != 0) {
-			System.out.println(1);
-		} else if(N % 400 == 0) {
-			System.out.println(1);
+		if(90 <= N && N <= 100) {
+			System.out.println("A");
+		} else if(80 <= N && N <= 89) {
+			System.out.println("B");
+		} else if(70 <= N && N <= 79) {
+			System.out.println("C");
+		} else if(60 <= N && N <= 69) {
+			System.out.println("D");
 		} else {
-			System.out.println(0);
+			System.out.println("F");
 		}
 	}
 }
