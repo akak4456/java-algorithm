@@ -12,16 +12,22 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int A, B;
+	private static int N, X;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		A = Integer.parseInt(st.nextToken());
-		B = Integer.parseInt(st.nextToken());
-		System.out.println(A + B);
-		System.out.println(A - B);
-		System.out.println(A * B);
-		System.out.println(A / B);
-		System.out.println(A % B);
+		N = Integer.parseInt(st.nextToken());
+		X = Integer.parseInt(st.nextToken());
+		st = new StringTokenizer(br.readLine());
+		arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		for(int i=0;i<N;i++) {
+			if(arr[i] < X) {
+				System.out.print(arr[i] + " ");
+			}
+		}
 	}
 }
