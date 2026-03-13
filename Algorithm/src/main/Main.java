@@ -12,22 +12,26 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int T;
-	private static int H, W, N;
+	private static int N;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		T = Integer.parseInt(br.readLine());
-		for(int testCase = 0; testCase < T; testCase++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			H = Integer.parseInt(st.nextToken());
-			W = Integer.parseInt(st.nextToken());
-			N = Integer.parseInt(st.nextToken());
-			int x = 1;
-			while(N > H) {
-				N -= H;
-				x++;
-			}
-			System.out.printf("%d%02d", N, x);
+		N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		int minVal = 987654321;
+		int maxVal = -987654321;
+		for(int i=0;i<N;i++) {
+			if(arr[i] < minVal) {
+				minVal = arr[i];
+			}
+			if(arr[i] > maxVal) {
+				maxVal = arr[i];
+			}
+		}
+		System.out.println(minVal + " " + maxVal);
 	}
 }
