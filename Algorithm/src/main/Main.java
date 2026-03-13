@@ -12,18 +12,22 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int H, M;
+	private static int T;
+	private static int H, W, N;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		H = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		if(M >= 45) {
-			System.out.println(H + " " + (M - 45));
-		} else if(H > 0) {
-			System.out.println((H - 1) + " " + (M + 15));
-		} else {
-			System.out.println("23 "+ (M + 15));
+		T = Integer.parseInt(br.readLine());
+		for(int testCase = 0; testCase < T; testCase++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			H = Integer.parseInt(st.nextToken());
+			W = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
+			int x = 1;
+			while(N > H) {
+				N -= H;
+				x++;
+			}
+			System.out.printf("%d%02d", N, x);
 		}
 	}
 }
