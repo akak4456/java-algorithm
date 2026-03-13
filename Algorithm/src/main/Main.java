@@ -12,15 +12,21 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String S;
-	private static int i;
+	private static int N;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 //		str = br.readLine();
 //		System.out.println((int)str.charAt(0));
-		S = br.readLine();
-		i = Integer.parseInt(br.readLine());
-		System.out.println(S.charAt(i-1));
+		N = Integer.parseInt(br.readLine());
+		for(int i=1;i<=N;i++) {
+			for(int j=1;j<=N-i;j++) {
+				System.out.print(" ");
+			}
+			for(int j=1;j<=i;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
 	}
 }
