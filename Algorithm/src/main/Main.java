@@ -12,16 +12,25 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String A, B, C;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 //		str = br.readLine();
 //		System.out.println((int)str.charAt(0));
-		A = br.readLine();
-		B = br.readLine();
-		C = br.readLine();
-		System.out.println(Integer.parseInt(A) + Integer.parseInt(B) - Integer.parseInt(C));
-		System.out.println(Integer.parseInt(A + B) - Integer.parseInt(C));
+		arr = new int[9 + 1];
+		for(int i=1;i<=9;i++) {
+			arr[i] = Integer.parseInt(br.readLine());
+		}
+		int maxIdx = -1;
+		int maxVal = -1;
+		for(int i=1;i<=9;i++) {
+			if(arr[i] > maxVal) {
+				maxVal = arr[i];
+				maxIdx = i;
+			}
+		}
+		System.out.println(maxVal);
+		System.out.println(maxIdx);
 	}
 }
