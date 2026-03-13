@@ -12,17 +12,15 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String str;
+	private static String S;
+	private static int i;
 	public static void main(String[] args) throws Exception {
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 //		str = br.readLine();
 //		System.out.println((int)str.charAt(0));
-		System.out.println("         ,r'\"7\n"
-				+ "r`-_   ,'  ,/\n"
-				+ " \\. \". L_r'\n"
-				+ "   `~\\/\n"
-				+ "      |\n"
-				+ "      |");
+		S = br.readLine();
+		i = Integer.parseInt(br.readLine());
+		System.out.println(S.charAt(i-1));
 	}
 }
