@@ -12,25 +12,18 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int[] arr;
+	private static int H, M;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// StringTokenizer st = new StringTokenizer(br.readLine());
-//		str = br.readLine();
-//		System.out.println((int)str.charAt(0));
-		arr = new int[9 + 1];
-		for(int i=1;i<=9;i++) {
-			arr[i] = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		H = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		if(M >= 45) {
+			System.out.println(H + " " + (M - 45));
+		} else if(H > 0) {
+			System.out.println((H - 1) + " " + (M + 15));
+		} else {
+			System.out.println("23 "+ (M + 15));
 		}
-		int maxIdx = -1;
-		int maxVal = -1;
-		for(int i=1;i<=9;i++) {
-			if(arr[i] > maxVal) {
-				maxVal = arr[i];
-				maxIdx = i;
-			}
-		}
-		System.out.println(maxVal);
-		System.out.println(maxIdx);
 	}
 }
