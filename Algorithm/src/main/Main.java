@@ -13,33 +13,24 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int[] arr;
+	private static int[] remains;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		arr = new int[8];
-		for(int i=0;i<8;i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+		// StringTokenizer st = new StringTokenizer(br.readLine());
+		arr = new int[10];
+		remains = new int[42];
+		for(int i=0;i<10;i++) {
+			arr[i] = Integer.parseInt(br.readLine());
 		}
-		boolean isAscending = true;
-		for(int i=0;i<8;i++) {
-			if(arr[i] != i + 1) {
-				isAscending = false;
-				break;
+		for(int i=0;i<10;i++) {
+			remains[arr[i] % 42]++;
+		}
+		int cnt = 0;
+		for(int i=0;i<42;i++) {
+			if(remains[i] > 0) {
+				cnt++;
 			}
 		}
-		boolean isDescending = true;
-		for(int i=0;i<8;i++) {
-			if(arr[i] != 8 - i) {
-				isDescending = false;
-				break;
-			}
-		}
-		if(isAscending) {
-			System.out.println("ascending");
-		} else if(isDescending) {
-			System.out.println("descending");
-		} else {
-			System.out.println("mixed");
-		}
+		System.out.println(cnt);
 	}
 }
