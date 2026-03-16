@@ -12,23 +12,34 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int T;
-	private static int R;
-	private static String S;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st = new StringTokenizer(br.readLine());
-		T = Integer.parseInt(br.readLine());
-		for(int testCase = 0; testCase < T; testCase++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			R = Integer.parseInt(st.nextToken());
-			S = st.nextToken();
-			for(int i=0;i<S.length();i++) {
-				for(int j=0;j<R;j++) {
-					System.out.print(S.charAt(i));
-				}
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		arr = new int[8];
+		for(int i=0;i<8;i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		boolean isAscending = true;
+		for(int i=0;i<8;i++) {
+			if(arr[i] != i + 1) {
+				isAscending = false;
+				break;
 			}
-			System.out.println();
+		}
+		boolean isDescending = true;
+		for(int i=0;i<8;i++) {
+			if(arr[i] != 8 - i) {
+				isDescending = false;
+				break;
+			}
+		}
+		if(isAscending) {
+			System.out.println("ascending");
+		} else if(isDescending) {
+			System.out.println("descending");
+		} else {
+			System.out.println("mixed");
 		}
 	}
 }
