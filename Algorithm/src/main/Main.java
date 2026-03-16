@@ -12,25 +12,23 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int T;
 	private static String S;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		T = Integer.parseInt(br.readLine());
-		for(int testCase = 0; testCase < T; testCase++) {
-			S = br.readLine();
-			int sum = 0;
-			int curScore = 0;
-			for(int i=0;i<S.length();i++) {
-				if(S.charAt(i) == 'O') {
-					curScore++;
-					sum += curScore;
-				} else {
-					curScore = 0;
-				}
+		S = br.readLine();
+		arr = new int[26];
+		for(int i=0;i<26;i++) {
+			arr[i] = -1;
+		}
+		for(int i=0;i<S.length();i++) {
+			if(arr[S.charAt(i) - 'a'] == -1) {
+				arr[S.charAt(i) - 'a'] = i;
 			}
-			System.out.println(sum);
+		}
+		for(int i=0;i<26;i++) {
+			System.out.print(arr[i] + " ");
 		}
 	}
 }
