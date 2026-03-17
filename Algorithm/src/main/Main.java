@@ -12,32 +12,29 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int A, B, C;
+	private static int N;
+	private static int[] arr;
+	private static int T, P;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		while(true) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			A = Integer.parseInt(st.nextToken());
-			B = Integer.parseInt(st.nextToken());
-			C = Integer.parseInt(st.nextToken());
-			if(A == 0 && B == 0 && C == 0) {
-				break;
-			}
-			if(A > C) {
-				int tmp = A;
-				A = C;
-				C = tmp;
-			}
-			if(B > C) {
-				int tmp = B;
-				B = C;
-				C = tmp;
-			}
-			if(A * A + B * B == C * C) {
-				System.out.println("right");
+		N = Integer.parseInt(br.readLine());
+		arr = new int[6];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for(int i=0;i<6;i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		st = new StringTokenizer(br.readLine());
+		T = Integer.parseInt(st.nextToken());
+		P = Integer.parseInt(st.nextToken());
+		int sum = 0;
+		for(int i=0;i<6;i++) {
+			if(arr[i] % T == 0) {
+				sum += arr[i] / T;
 			} else {
-				System.out.println("wrong");
+				sum += arr[i] / T + 1;
 			}
 		}
+		System.out.println(sum);
+		System.out.println(N / P + " " + N % P);
 	}
 }
