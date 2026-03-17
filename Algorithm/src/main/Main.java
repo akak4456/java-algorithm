@@ -12,33 +12,22 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N, M;
-	private static int[] arr;
+	private static int L;
+	private static String S;
+	private static final long M = 1234567891;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		arr = new int[N];
-		st = new StringTokenizer(br.readLine());
-		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+//		StringTokenizer st = new StringTokenizer(br.readLine());
+		L = Integer.parseInt(br.readLine());
+		S = br.readLine();
+		long p = 1;
+		long sum = 0;
+		for(int i=0;i<L;i++) {
+			sum += (S.charAt(i) - 'a' + 1) * p;
+			sum %= M;
+			p *= 31;
+			p %= M;
 		}
-		int minDist = 987654321;
-		int minSum = -1;
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<N;j++) {
-				if(i == j) continue;
-				for(int k = 0; k < N; k++) {
-					if(i == k || j == k) continue;
-					int sum = arr[i] + arr[j] + arr[k];
-					if(sum <= M && M - sum < minDist) {
-						minDist =Math.abs(sum - M);
-						minSum = sum;
-					}
-				}
-			}
-		}
-		System.out.println(minSum);
+		System.out.println(sum);
 	}
 }
