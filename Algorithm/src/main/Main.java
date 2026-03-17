@@ -12,27 +12,31 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String S;
+	private static int N;
+	private static int[] arr;
+	private static double[] arr2;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st = new StringTokenizer(br.readLine());
-		while(true) {
-			S = br.readLine();
-			if(S.equals("0")) {
-				break;
-			}
-			boolean isPalindrome = true;
-			for(int i=0;i<S.length() / 2;i++) {
-				if(S.charAt(i) != S.charAt(S.length() - i - 1)) {
-					isPalindrome = false;
-					break;
-				}
-			}
-			if(isPalindrome) {
-				System.out.println("yes");
-			} else  {
-				System.out.println("no");
+		N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		arr = new int[N];
+		arr2 = new double[N];
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		int maxVal = -1;
+		for(int i=0;i<N;i++) {
+			if(arr[i] > maxVal) {
+				maxVal = arr[i];
 			}
 		}
+		for(int i=0;i<N;i++) {
+			arr2[i] = ((double) arr[i] / maxVal * 100);
+		}
+		double sum = 0;
+		for(int i=0;i<N;i++) {
+			sum += arr2[i];
+		}
+		System.out.println(sum / N);
 	}
 }
