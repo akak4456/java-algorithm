@@ -17,21 +17,12 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
 //		StringTokenizer st = new StringTokenizer(br.readLine());
-		boolean isPossible = false;
-		for(int i = 1; i<=N;i++) {
-			int sum = i;
-			String str = String.valueOf(i);
-			for(int j=0;j<str.length();j++) {
-				sum += str.charAt(j) - '0';
-			}
-			if(sum == N) {
-				isPossible = true;
-				System.out.println(i);
-				break;
-			}
+		int step = 1;
+		int last = 1;
+		while(last < N) {
+			last += 6 * step;
+			step++;
 		}
-		if(!isPossible) {
-			System.out.println(0);
-		}
+		System.out.println(step);
 	}
 }
