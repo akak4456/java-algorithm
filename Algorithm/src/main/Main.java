@@ -12,31 +12,29 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N;
-	private static int[] arr;
-	private static double[] arr2;
+	private static int N, M;
+	public static int getGCD(int a, int b) {
+        while (b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
+        }
+        return a;
+    }
+	public static int getLCM(int a, int b) {
+        return (a * b) / getGCD(a, b);
+    }
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		N = Integer.parseInt(br.readLine());
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		arr = new int[N];
-		arr2 = new double[N];
-		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		if(N < M ) {
+			int tmp = N;
+			N = M;
+			M = tmp;
 		}
-		int maxVal = -1;
-		for(int i=0;i<N;i++) {
-			if(arr[i] > maxVal) {
-				maxVal = arr[i];
-			}
-		}
-		for(int i=0;i<N;i++) {
-			arr2[i] = ((double) arr[i] / maxVal * 100);
-		}
-		double sum = 0;
-		for(int i=0;i<N;i++) {
-			sum += arr2[i];
-		}
-		System.out.println(sum / N);
+		System.out.println(getGCD(N, M));
+		System.out.println(getLCM(N,M));
 	}
 }
