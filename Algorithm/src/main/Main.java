@@ -13,28 +13,25 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
-	private static int[] arr;
-	private static boolean isPrime(int n) {
-		if(n == 1) return false;
-		for(int i=2;i<n;i++) {
-			if(n % i == 0) return false;
-		}
-		return true;
-	}
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
-		arr = new int[N];
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
-		}
-		int sum = 0;
-		for(int i=0;i<N;i++) {
-			if(isPrime(arr[i])) {
-				sum++;
+//		StringTokenizer st = new StringTokenizer(br.readLine());
+		boolean isPossible = false;
+		for(int i = 1; i<=N;i++) {
+			int sum = i;
+			String str = String.valueOf(i);
+			for(int j=0;j<str.length();j++) {
+				sum += str.charAt(j) - '0';
+			}
+			if(sum == N) {
+				isPossible = true;
+				System.out.println(i);
+				break;
 			}
 		}
-		System.out.println(sum);
+		if(!isPossible) {
+			System.out.println(0);
+		}
 	}
 }
