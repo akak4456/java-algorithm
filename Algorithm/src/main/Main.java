@@ -12,22 +12,27 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int L;
 	private static String S;
-	private static final long M = 1234567891;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //		StringTokenizer st = new StringTokenizer(br.readLine());
-		L = Integer.parseInt(br.readLine());
-		S = br.readLine();
-		long p = 1;
-		long sum = 0;
-		for(int i=0;i<L;i++) {
-			sum += (S.charAt(i) - 'a' + 1) * p;
-			sum %= M;
-			p *= 31;
-			p %= M;
+		while(true) {
+			S = br.readLine();
+			if(S.equals("0")) {
+				break;
+			}
+			boolean isPalindrome = true;
+			for(int i=0;i<S.length() / 2;i++) {
+				if(S.charAt(i) != S.charAt(S.length() - i - 1)) {
+					isPalindrome = false;
+					break;
+				}
+			}
+			if(isPalindrome) {
+				System.out.println("yes");
+			} else  {
+				System.out.println("no");
+			}
 		}
-		System.out.println(sum);
 	}
 }
