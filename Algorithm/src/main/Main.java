@@ -14,27 +14,27 @@ import java.util.StringTokenizer;
 public class Main {
 	private static int N;
 	private static int[] arr;
-	private static int T, P;
+	private static boolean isPrime(int n) {
+		if(n == 1) return false;
+		for(int i=2;i<n;i++) {
+			if(n % i == 0) return false;
+		}
+		return true;
+	}
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine());
-		arr = new int[6];
+		arr = new int[N];
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		for(int i=0;i<6;i++) {
+		for(int i=0;i<N;i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		st = new StringTokenizer(br.readLine());
-		T = Integer.parseInt(st.nextToken());
-		P = Integer.parseInt(st.nextToken());
 		int sum = 0;
-		for(int i=0;i<6;i++) {
-			if(arr[i] % T == 0) {
-				sum += arr[i] / T;
-			} else {
-				sum += arr[i] / T + 1;
+		for(int i=0;i<N;i++) {
+			if(isPrime(arr[i])) {
+				sum++;
 			}
 		}
 		System.out.println(sum);
-		System.out.println(N / P + " " + N % P);
 	}
 }
