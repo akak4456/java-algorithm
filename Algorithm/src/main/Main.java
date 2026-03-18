@@ -12,29 +12,30 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N, M;
-	public static int getGCD(int a, int b) {
-        while (b != 0) {
-            int temp = a % b;
-            a = b;
-            b = temp;
-        }
-        return a;
-    }
-	public static int getLCM(int a, int b) {
-        return (a * b) / getGCD(a, b);
-    }
+	private static int T;
+	private static int k,n;
+	private static int[][] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		if(N < M ) {
-			int tmp = N;
-			N = M;
-			M = tmp;
+		// StringTokenizer st = new StringTokenizer(br.readLine());
+		T = Integer.parseInt(br.readLine());
+		for(int testCase = 0; testCase < T; testCase++) {
+			k = Integer.parseInt(br.readLine());
+			n = Integer.parseInt(br.readLine());
+			arr = new int[k + 1][n+1];
+			for(int i=1;i<=n;i++) {
+				arr[0][i] = i;
+			}
+			for(int i=1;i<=k;i++) {
+				for(int j=1;j<=n;j++) {
+					int sum = 0;
+					for(int k=1;k<=j;k++) {
+						sum += arr[i-1][k];
+					}
+					arr[i][j] = sum;
+				}
+			}
+			System.out.println(arr[k][n]);
 		}
-		System.out.println(getGCD(N, M));
-		System.out.println(getLCM(N,M));
 	}
 }
