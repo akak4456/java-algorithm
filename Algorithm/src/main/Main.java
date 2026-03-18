@@ -12,23 +12,34 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N, K;
-	public static long factorial(int n) {
-        long result = 1;
-        for (int i = 2; i <= n; i++) {
-            result *= i;
-        }
-        return result;
-    }
-
-    public static long combination(int n, int k) {
-        return factorial(n) / (factorial(k) * factorial(n - k));
-    }
+	private static String str;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-		System.out.println(combination(N, K));
+		// StringTokenizer st = new StringTokenizer(br.readLine());
+		str = br.readLine();
+		int remain = 0;
+		boolean isEven = true;
+		for(int i=0;i<12;i++) {
+			if(str.charAt(i) == '*') {
+				if(i%2 == 0) {
+					isEven = true;
+				} else {
+					isEven = false;
+				}
+				continue;
+			}
+			if(i%2 == 0) {
+				remain += str.charAt(i) - '0';
+			} else {
+				remain += (str.charAt(i) - '0') * 3;
+			}
+		}
+		for(int i=0;i<10;i++) {
+			int m = ((remain / 10 + 2) * 10 - (remain + (isEven ? i : i * 3))) % 10;
+			if(m == str.charAt(str.length() - 1) - '0') {
+				System.out.println(i);
+				break;
+			}
+		}
 	}
 }
