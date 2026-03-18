@@ -12,22 +12,23 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N;
-	private static int[] arr;
+	private static int N, K;
+	public static long factorial(int n) {
+        long result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    public static long combination(int n, int k) {
+        return factorial(n) / (factorial(k) * factorial(n - k));
+    }
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(br.readLine());
-		arr = new int[N];
-		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		Arrays.sort(arr);
-		StringBuilder sb = new StringBuilder();
-		for(int i=0;i<N;i++) {
-			sb.append(arr[i]);
-			sb.append("\n");
-		}
-		System.out.println(sb);
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
+		System.out.println(combination(N, K));
 	}
 }
