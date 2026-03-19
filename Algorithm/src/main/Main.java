@@ -13,23 +13,21 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		int twoCnt = 0;
-		int fiveCnt = 0;
-		for(int i=1;i<=N;i++) {
-			int t = i;
-			while(t % 2 == 0) {
-				t /= 2;
-				twoCnt++;
-			}
-			while(t % 5 == 0) {
-				t /= 5;
-				fiveCnt++;
-			}
+		arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(br.readLine());
 		}
-		System.out.println(Math.min(twoCnt, fiveCnt));
+		Arrays.sort(arr);
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<N;i++) {
+			sb.append(arr[i]);
+			sb.append("\n");
+		}
+		System.out.println(sb);
 	}
 }
