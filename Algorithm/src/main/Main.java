@@ -17,19 +17,19 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		int step = 0;
-		int cur = 0;
-		while(step < N) {
-			cur++;
-			// System.out.println(step + " " + cur);
-			String str = String.valueOf(cur);
-			for(int i=0;i<=str.length() - 3;i++) {
-				if(str.charAt(i) == '6' && str.charAt(i + 1) == '6' && str.charAt(i + 2) == '6') {
-					step++;
-					break;
-				}
+		int twoCnt = 0;
+		int fiveCnt = 0;
+		for(int i=1;i<=N;i++) {
+			int t = i;
+			while(t % 2 == 0) {
+				t /= 2;
+				twoCnt++;
+			}
+			while(t % 5 == 0) {
+				t /= 5;
+				fiveCnt++;
 			}
 		}
-		System.out.println(cur);
+		System.out.println(Math.min(twoCnt, fiveCnt));
 	}
 }
