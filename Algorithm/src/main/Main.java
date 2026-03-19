@@ -12,32 +12,30 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String str1, str2, str3;
-	private static void printFizzBuzz(int n) {
-		if(n % 3 == 0 && n % 5 == 0) {
-			System.out.println("FizzBuzz");
-		} else if(n % 3 == 0) {
-			System.out.println("Fizz");
-		} else if(n % 5 == 0) {
-			System.out.println("Buzz");
-		} else {
-			System.out.println(n);
-		}
-	}
+	private static int N;
+	private static String[] strs;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		str1 = br.readLine();
-		str2 = br.readLine();
-		str3 = br.readLine();
-		if(!str1.equals("Fizz") && !str1.equals("Buzz") && !str1.equals("FizzBuzz") ) {
-			printFizzBuzz(Integer.parseInt(str1) + 3);
+		N = Integer.parseInt(br.readLine());
+		strs = new String[N];
+		for(int i=0;i<N;i++) {
+			strs[i] = br.readLine();
 		}
-		else if(!str2.equals("Fizz") && !str2.equals("Buzz") && !str2.equals("FizzBuzz") ) {
-			printFizzBuzz(Integer.parseInt(str2) + 2);
+		Arrays.sort(strs, (s1, s2) -> {
+		    if (s1.length() == s2.length()) {
+		        return s1.compareTo(s2); // 사전순
+		    }
+		    return s1.length() - s2.length(); // 길이순
+		});
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<N;i++) {
+			if(i > 0 && strs[i-1].equals(strs[i])) {
+				continue;
+			}
+			sb.append(strs[i]);
+			sb.append("\n");
 		}
-		else if(!str3.equals("Fizz") && !str3.equals("Buzz") && !str3.equals("FizzBuzz") ) {
-			printFizzBuzz(Integer.parseInt(str3) + 1);
-		}
+		System.out.println(sb);
 	}
 }
