@@ -12,34 +12,32 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String str;
+	private static String str1, str2, str3;
+	private static void printFizzBuzz(int n) {
+		if(n % 3 == 0 && n % 5 == 0) {
+			System.out.println("FizzBuzz");
+		} else if(n % 3 == 0) {
+			System.out.println("Fizz");
+		} else if(n % 5 == 0) {
+			System.out.println("Buzz");
+		} else {
+			System.out.println(n);
+		}
+	}
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		str = br.readLine();
-		int remain = 0;
-		boolean isEven = true;
-		for(int i=0;i<12;i++) {
-			if(str.charAt(i) == '*') {
-				if(i%2 == 0) {
-					isEven = true;
-				} else {
-					isEven = false;
-				}
-				continue;
-			}
-			if(i%2 == 0) {
-				remain += str.charAt(i) - '0';
-			} else {
-				remain += (str.charAt(i) - '0') * 3;
-			}
+		str1 = br.readLine();
+		str2 = br.readLine();
+		str3 = br.readLine();
+		if(!str1.equals("Fizz") && !str1.equals("Buzz") && !str1.equals("FizzBuzz") ) {
+			printFizzBuzz(Integer.parseInt(str1) + 3);
 		}
-		for(int i=0;i<10;i++) {
-			int m = ((remain / 10 + 2) * 10 - (remain + (isEven ? i : i * 3))) % 10;
-			if(m == str.charAt(str.length() - 1) - '0') {
-				System.out.println(i);
-				break;
-			}
+		else if(!str2.equals("Fizz") && !str2.equals("Buzz") && !str2.equals("FizzBuzz") ) {
+			printFizzBuzz(Integer.parseInt(str2) + 2);
+		}
+		else if(!str3.equals("Fizz") && !str3.equals("Buzz") && !str3.equals("FizzBuzz") ) {
+			printFizzBuzz(Integer.parseInt(str3) + 1);
 		}
 	}
 }
