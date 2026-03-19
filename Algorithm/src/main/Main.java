@@ -13,29 +13,23 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
-	private static String[] strs;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		strs = new String[N];
-		for(int i=0;i<N;i++) {
-			strs[i] = br.readLine();
-		}
-		Arrays.sort(strs, (s1, s2) -> {
-		    if (s1.length() == s2.length()) {
-		        return s1.compareTo(s2); // 사전순
-		    }
-		    return s1.length() - s2.length(); // 길이순
-		});
-		StringBuilder sb = new StringBuilder();
-		for(int i=0;i<N;i++) {
-			if(i > 0 && strs[i-1].equals(strs[i])) {
-				continue;
+		int step = 0;
+		int cur = 0;
+		while(step < N) {
+			cur++;
+			// System.out.println(step + " " + cur);
+			String str = String.valueOf(cur);
+			for(int i=0;i<=str.length() - 3;i++) {
+				if(str.charAt(i) == '6' && str.charAt(i + 1) == '6' && str.charAt(i + 2) == '6') {
+					step++;
+					break;
+				}
 			}
-			sb.append(strs[i]);
-			sb.append("\n");
 		}
-		System.out.println(sb);
+		System.out.println(cur);
 	}
 }
