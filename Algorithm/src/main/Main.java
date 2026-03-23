@@ -34,10 +34,10 @@ public class Main {
 			points[i] = new Point(x, y);
 		}
 		Arrays.sort(points, (p1, p2) -> {
-			if(p1.x == p2.x) {
-				return p1.y - p2.y;
+			if(p1.y == p2.y) {
+				return p1.x - p2.x;
 			}
-			return p1.x - p2.x;
+			return p1.y - p2.y;
 		});
 		for(int i=0;i<N;i++) {
 			System.out.println(points[i].x + " " + points[i].y);
