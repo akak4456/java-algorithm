@@ -11,41 +11,36 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-class Member {
-	int age;
-	int idx;
-	String name;
-	
-	public Member(int age, int idx, String name) {
-		this.age = age;
-		this.idx = idx;
-		this.name = name;
+class Point {
+	int x;
+	int y;
+	public Point(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 }
 public class Main {
 	private static int N;
-	private static Member[] members;
+	private static Point[] points;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		members = new Member[N];
+		points = new Point[N];
 		for(int i=0;i<N;i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int age = Integer.parseInt(st.nextToken());
-			String name = st.nextToken();
-			members[i] = new Member(age, i, name);
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+			points[i] = new Point(x, y);
 		}
-		
-		Arrays.sort(members, (a, b) -> {
-		    if (a.age == b.age) {
-		        return a.idx - b.idx;
-		    }
-		    return a.age - b.age;
+		Arrays.sort(points, (p1, p2) -> {
+			if(p1.x == p2.x) {
+				return p1.y - p2.y;
+			}
+			return p1.x - p2.x;
 		});
-		
 		for(int i=0;i<N;i++) {
-			System.out.println(members[i].age + " " + members[i].name);
+			System.out.println(points[i].x + " " + points[i].y);
 		}
 	}
 }
