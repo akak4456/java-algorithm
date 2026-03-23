@@ -11,30 +11,41 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+class Member {
+	int age;
+	int idx;
+	String name;
+	
+	public Member(int age, int idx, String name) {
+		this.age = age;
+		this.idx = idx;
+		this.name = name;
+	}
+}
 public class Main {
 	private static int N;
-	private static int[] x;
-	private static int[] y;
+	private static Member[] members;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		x = new int[N];
-		y = new int[N];
+		members = new Member[N];
 		for(int i=0;i<N;i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			x[i] = Integer.parseInt(st.nextToken());
-			y[i] = Integer.parseInt(st.nextToken());
+			int age = Integer.parseInt(st.nextToken());
+			String name = st.nextToken();
+			members[i] = new Member(age, i, name);
 		}
+		
+		Arrays.sort(members, (a, b) -> {
+		    if (a.age == b.age) {
+		        return a.idx - b.idx;
+		    }
+		    return a.age - b.age;
+		});
+		
 		for(int i=0;i<N;i++) {
-			int k = 1;
-			for(int j=0;j<N;j++) {
-				if(i == j) continue;
-				if(x[j] > x[i] && y[j] > y[i]) {
-					k++;
-				}
-			}
-			System.out.print(k + " ");
+			System.out.println(members[i].age + " " + members[i].name);
 		}
 	}
 }
