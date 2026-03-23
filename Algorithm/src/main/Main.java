@@ -28,7 +28,7 @@ public class Main {
 		}
 		M = Integer.parseInt(br.readLine());
 		st = new StringTokenizer(br.readLine());
-		for(int i=0;i<N;i++) {
+		for(int i=0;i<M;i++) {
 			int a = Integer.parseInt(st.nextToken());
 			if(s.contains(a)) {
 				System.out.println(1);
