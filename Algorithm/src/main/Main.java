@@ -17,36 +17,25 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int T;
-	private static Stack<Character> st;
+	private static int K;
+	private static Stack<Integer> st;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		T = Integer.parseInt(br.readLine());
-		for(int testCase = 0; testCase < T; testCase++) {
-			String str = br.readLine();
-			st = new Stack<>();
-			boolean isPossible = true;
-			for(int i=0;i<str.length();i++) {
-				if(str.charAt(i) == '(') {
-					st.add(str.charAt(i));
-				}
-				if(str.charAt(i) == ')') {
-					if(st.isEmpty()) {
-						isPossible = false;
-						break;
-					}
-					st.pop();
-				}
-			}
-			if(!st.isEmpty()) {
-				isPossible = false;
-			}
-			if(isPossible) {
-				System.out.println("YES");
+		K = Integer.parseInt(br.readLine());
+		st = new Stack<>();
+		for(int i=0;i<K;i++) {
+			int a = Integer.parseInt(br.readLine());
+			if(a == 0) {
+				st.pop();
 			} else {
-				System.out.println("NO");
+				st.add(a);
 			}
 		}
+		int sum = 0;
+		while(!st.isEmpty()) {
+			sum += st.pop();
+		}
+		System.out.println(sum);
 	}
 }
