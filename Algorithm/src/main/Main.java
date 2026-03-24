@@ -17,20 +17,24 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
-	private static Deque<Integer> dq;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		dq = new LinkedList<>();
-		for(int i=1;i<=N;i++) {
-			dq.add(i);
+		int cnt = 0;
+		while(N >= 3) {
+			if(N % 5 == 0) {
+				cnt += N / 5;
+				N = 0;
+				break;
+			}
+			cnt++;
+			N -= 3;
 		}
-		while(dq.size() > 1) {
-			dq.removeFirst();
-			int a = dq.removeFirst();
-			dq.addLast(a);
+		if(N > 0) {
+			System.out.println(-1);
+		} else {
+			System.out.println(cnt);
 		}
-		System.out.println(dq.removeFirst());
 	}
 }
