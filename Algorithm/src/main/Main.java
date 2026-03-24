@@ -17,39 +17,22 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static String str;
+	private static int T;
 	private static Stack<Character> st;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		while(true) {
-			str = br.readLine();
-			if(str.equals(".")) {
-				break;
-			}
+		T = Integer.parseInt(br.readLine());
+		for(int testCase = 0; testCase < T; testCase++) {
+			String str = br.readLine();
 			st = new Stack<>();
 			boolean isPossible = true;
 			for(int i=0;i<str.length();i++) {
-				if(str.charAt(i) == '(' || str.charAt(i) == '[') {
+				if(str.charAt(i) == '(') {
 					st.add(str.charAt(i));
 				}
 				if(str.charAt(i) == ')') {
 					if(st.isEmpty()) {
-						isPossible = false;
-						break;
-					}
-					if(st.peek() != '(') {
-						isPossible = false;
-						break;
-					}
-					st.pop();
-				}
-				if(str.charAt(i) == ']') {
-					if(st.isEmpty()) {
-						isPossible = false;
-						break;
-					}
-					if(st.peek() != '[') {
 						isPossible = false;
 						break;
 					}
@@ -60,9 +43,9 @@ public class Main {
 				isPossible = false;
 			}
 			if(isPossible) {
-				System.out.println("yes");
+				System.out.println("YES");
 			} else {
-				System.out.println("no");
+				System.out.println("NO");
 			}
 		}
 	}
