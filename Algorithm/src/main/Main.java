@@ -7,34 +7,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N,M;
-	private static Set<Integer> s;
+	private static int N;
+	private static Deque<Integer> dq;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		s = new HashSet<Integer>();
-		for(int i=0;i<N;i++) {
-			int a = Integer.parseInt(st.nextToken());
-			s.add(a);
+		dq = new LinkedList<>();
+		for(int i=1;i<=N;i++) {
+			dq.add(i);
 		}
-		M = Integer.parseInt(br.readLine());
-		st = new StringTokenizer(br.readLine());
-		for(int i=0;i<M;i++) {
-			int a = Integer.parseInt(st.nextToken());
-			if(s.contains(a)) {
-				System.out.println(1);
-			} else {
-				System.out.println(0);
-			}
+		while(dq.size() > 1) {
+			dq.removeFirst();
+			int a = dq.removeFirst();
+			dq.addLast(a);
 		}
+		System.out.println(dq.removeFirst());
 	}
 }
