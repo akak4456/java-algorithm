@@ -13,28 +13,57 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N;
+	private static String str;
+	private static Stack<Character> st;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(br.readLine());
-		int cnt = 0;
-		while(N >= 3) {
-			if(N % 5 == 0) {
-				cnt += N / 5;
-				N = 0;
+		while(true) {
+			str = br.readLine();
+			if(str.equals(".")) {
 				break;
 			}
-			cnt++;
-			N -= 3;
-		}
-		if(N > 0) {
-			System.out.println(-1);
-		} else {
-			System.out.println(cnt);
+			st = new Stack<>();
+			boolean isPossible = true;
+			for(int i=0;i<str.length();i++) {
+				if(str.charAt(i) == '(' || str.charAt(i) == '[') {
+					st.add(str.charAt(i));
+				}
+				if(str.charAt(i) == ')') {
+					if(st.isEmpty()) {
+						isPossible = false;
+						break;
+					}
+					if(st.peek() != '(') {
+						isPossible = false;
+						break;
+					}
+					st.pop();
+				}
+				if(str.charAt(i) == ']') {
+					if(st.isEmpty()) {
+						isPossible = false;
+						break;
+					}
+					if(st.peek() != '[') {
+						isPossible = false;
+						break;
+					}
+					st.pop();
+				}
+			}
+			if(!st.isEmpty()) {
+				isPossible = false;
+			}
+			if(isPossible) {
+				System.out.println("yes");
+			} else {
+				System.out.println("no");
+			}
 		}
 	}
 }
