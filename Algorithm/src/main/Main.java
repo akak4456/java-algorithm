@@ -18,47 +18,31 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N;
+	private static int N, K;
 	private static Deque<Integer> q;
+	private static ArrayList<Integer> list;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
 		q = new LinkedList<>();
-		for(int i=0;i<N;i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			String str = st.nextToken();
-			if(str.equals("push")) {
-				int a = Integer.parseInt(st.nextToken());
-				q.add(a);
-			}
-			if(str.equals("pop")) {
-				if(q.isEmpty()) {
-					System.out.println(-1);
-				} else {
-					System.out.println(q.removeFirst());
-				}
-			}
-			if(str.equals("size")) {
-				System.out.println(q.size());
-			}
-			if(str.equals("empty")) {
-				System.out.println(q.isEmpty() ? 1 : 0);
-			}
-			if(str.equals("front")) {
-				if(q.isEmpty()) {
-					System.out.println(-1);
-				} else {
-					System.out.println(q.getFirst());
-				}
-			}
-			if(str.equals("back")) {
-				if(q.isEmpty()) {
-					System.out.println(-1);
-				} else {
-					System.out.println(q.getLast());
-				}
-			}
+		list = new ArrayList<>();
+		for(int i=1;i<=N;i++) {
+			q.add(i);
 		}
+		while(!q.isEmpty()) {
+			for(int i=0;i<K-1;i++) {
+				q.addLast(q.removeFirst());
+			}
+			list.add(q.removeFirst());
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("<");
+		for(int i=0;i<list.size() -1;i++) {
+			sb.append(list.get(i)).append(", ");
+		}
+		sb.append(list.get(list.size()-1)).append(">");
+		System.out.println(sb);
 	}
 }
