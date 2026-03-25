@@ -12,43 +12,51 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
-	private static Stack<Integer> stack;
+	private static Deque<Integer> q;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		stack = new Stack<>();
+		q = new LinkedList<>();
 		for(int i=0;i<N;i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			String str = st.nextToken();
 			if(str.equals("push")) {
 				int a = Integer.parseInt(st.nextToken());
-				stack.add(a);
+				q.add(a);
 			}
 			if(str.equals("pop")) {
-				if(stack.isEmpty()) {
+				if(q.isEmpty()) {
 					System.out.println(-1);
 				} else {
-					System.out.println(stack.pop());
+					System.out.println(q.removeFirst());
 				}
 			}
 			if(str.equals("size")) {
-				System.out.println(stack.size());
+				System.out.println(q.size());
 			}
 			if(str.equals("empty")) {
-				System.out.println(stack.isEmpty() ? 1 : 0);
+				System.out.println(q.isEmpty() ? 1 : 0);
 			}
-			if(str.equals("top")) {
-				if(stack.isEmpty()) {
+			if(str.equals("front")) {
+				if(q.isEmpty()) {
 					System.out.println(-1);
 				} else {
-					System.out.println(stack.peek());
+					System.out.println(q.getFirst());
+				}
+			}
+			if(str.equals("back")) {
+				if(q.isEmpty()) {
+					System.out.println(-1);
+				} else {
+					System.out.println(q.getLast());
 				}
 			}
 		}
