@@ -18,33 +18,39 @@ import java.util.StringTokenizer;
 
 public class Main {
 	private static int N;
-	private static Map<Integer, Integer> m;
-	private static int M;
+	private static Stack<Integer> stack;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(br.readLine());
-		m = new HashMap<>();
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		stack = new Stack<>();
 		for(int i=0;i<N;i++) {
-			int a = Integer.parseInt(st.nextToken());
-			if(m.containsKey(a)) {
-				m.put(a, m.get(a) + 1);
-			} else {
-				m.put(a, 1);
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String str = st.nextToken();
+			if(str.equals("push")) {
+				int a = Integer.parseInt(st.nextToken());
+				stack.add(a);
+			}
+			if(str.equals("pop")) {
+				if(stack.isEmpty()) {
+					System.out.println(-1);
+				} else {
+					System.out.println(stack.pop());
+				}
+			}
+			if(str.equals("size")) {
+				System.out.println(stack.size());
+			}
+			if(str.equals("empty")) {
+				System.out.println(stack.isEmpty() ? 1 : 0);
+			}
+			if(str.equals("top")) {
+				if(stack.isEmpty()) {
+					System.out.println(-1);
+				} else {
+					System.out.println(stack.peek());
+				}
 			}
 		}
-		StringBuilder sb = new StringBuilder();
-		M = Integer.parseInt(br.readLine());
-		st = new StringTokenizer(br.readLine());
-		for(int i=0;i<M;i++) {
-			int a = Integer.parseInt(st.nextToken());
-			if(m.containsKey(a)) {
-				sb.append(m.get(a)).append(" ");
-			} else {
-				sb.append("0 ");
-			}
-		}
-		System.out.println(sb);
 	}
 }
