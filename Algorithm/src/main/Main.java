@@ -18,31 +18,23 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N, K;
-	private static Deque<Integer> q;
-	private static ArrayList<Integer> list;
+	private static int N;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
-		q = new LinkedList<>();
-		list = new ArrayList<>();
-		for(int i=1;i<=N;i++) {
-			q.add(i);
+		arr = new int[N];
+		for(int i=0;i<N;i++) {
+			arr[i] = Integer.parseInt(br.readLine());
 		}
-		while(!q.isEmpty()) {
-			for(int i=0;i<K-1;i++) {
-				q.addLast(q.removeFirst());
-			}
-			list.add(q.removeFirst());
+		Arrays.sort(arr);
+		int remove = (int)Math.round((double) N * 0.15);
+		double avg = 0;
+		for(int i=remove;i<N - remove;i++) {
+			avg += arr[i];
 		}
-		StringBuilder sb = new StringBuilder();
-		sb.append("<");
-		for(int i=0;i<list.size() -1;i++) {
-			sb.append(list.get(i)).append(", ");
-		}
-		sb.append(list.get(list.size()-1)).append(">");
-		System.out.println(sb);
+		avg /= (N - 2 * remove);
+		System.out.println((int)Math.round(avg));
 	}
 }
