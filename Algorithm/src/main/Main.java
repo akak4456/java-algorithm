@@ -18,23 +18,87 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int N;
-	private static int[] arr;
+	private static int N, M;
+	private static char[][] board;
+	private static int getCnt(int startRow, int startCol) {
+		int result = 987654321;
+		int cnt = 0;
+		for(int i=0;i<8;i++) {
+			for(int j=0;j<8;j++) {
+				if(i%2 == 0) {
+					if(j % 2 == 0) {
+						if(board[startRow + i][startCol + j] != 'W') {
+							cnt++;
+						}
+					} else {
+						if(board[startRow + i][startCol + j] != 'B') {
+							cnt++;
+						}
+					}
+				} else {
+					if(j % 2 != 0) {
+						if(board[startRow + i][startCol + j] != 'W') {
+							cnt++;
+						}
+					} else {
+						if(board[startRow + i][startCol + j] != 'B') {
+							cnt++;
+						}
+					}
+				}
+			}
+		}
+		result = Math.min(result, cnt);
+		cnt = 0;
+		for(int i=0;i<8;i++) {
+			for(int j=0;j<8;j++) {
+				if(i%2 == 0) {
+					if(j % 2 != 0) {
+						if(board[startRow + i][startCol + j] != 'W') {
+							cnt++;
+						}
+					} else {
+						if(board[startRow + i][startCol + j] != 'B') {
+							cnt++;
+						}
+					}
+				} else {
+					if(j % 2 == 0) {
+						if(board[startRow + i][startCol + j] != 'W') {
+							cnt++;
+						}
+					} else {
+						if(board[startRow + i][startCol + j] != 'B') {
+							cnt++;
+						}
+					}
+				}
+			}
+		}
+		result = Math.min(result, cnt);
+		return result;
+	}
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
-		arr = new int[N];
+		M = Integer.parseInt(st.nextToken());
+		board = new char[N][M];
 		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(br.readLine());
+			String line = br.readLine();
+			for(int j=0;j<M;j++) {
+				board[i][j] = line.charAt(j);
+			}
 		}
-		Arrays.sort(arr);
-		int remove = (int)Math.round((double) N * 0.15);
-		double avg = 0;
-		for(int i=remove;i<N - remove;i++) {
-			avg += arr[i];
+		int result = 987654321;
+		for(int row=0;row+8<=N;row++) {
+			for(int col=0;col+8<=M;col++) {
+				int cnt = getCnt(row, col);
+				if(cnt < result) {
+					result = cnt;
+				}
+			}
 		}
-		avg /= (N - 2 * remove);
-		System.out.println((int)Math.round(avg));
+		System.out.println(result);
 	}
 }
