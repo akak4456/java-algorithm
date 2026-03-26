@@ -16,54 +16,33 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
-class Print {
-	int idx;
-	int priority;
-	public Print(int idx, int priority) {
-		this.idx = idx;
-		this.priority = priority;
-	}
-}
 public class Main {
-	private static int T;
-	private static int N, M;
-	private static LinkedList<Print> prints;
+	private static int N;
+	private static Stack<Integer> st;
+	private static StringBuilder sb;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		T = Integer.parseInt(br.readLine());
-		for(int testCase = 0; testCase < T;testCase++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			N = Integer.parseInt(st.nextToken());
-			M = Integer.parseInt(st.nextToken());
-			prints = new LinkedList<>();
-			st = new StringTokenizer(br.readLine());
-			for(int i=0;i<N;i++) {
-				int a = Integer.parseInt(st.nextToken()); 
-				prints.add(new Print(i, a));
+		// StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(br.readLine());
+		st = new Stack<>();
+		sb = new StringBuilder();
+		int n = 1;
+		for(int i=0;i<N;i++) {
+			int a = Integer.parseInt(br.readLine());
+			while(n <= a) {
+				st.add(n);
+				sb.append("+\n");
+				n++;
 			}
-			int cnt = 0;
-			while(true) {
-				Print print = prints.remove(0);
-				boolean isPrintable = true;
-				
-				for(int i=0;i<prints.size();i++) {
-					if(prints.get(i).priority > print.priority) {
-						isPrintable = false;
-						break;
-					}
-				}
-				if(isPrintable) {
-					cnt++;
-					if(print.idx == M) {
-						System.out.println(cnt);
-						break;
-					}
-				} else {
-					prints.addLast(print);
-				}
+			if(st.peek() == a) {
+				st.pop();
+				sb.append("-\n");
 			}
 		}
-		
-		
+		if(st.isEmpty()) {
+			System.out.println(sb);
+		} else {
+			System.out.println("NO");
+		}
 	}
 }
