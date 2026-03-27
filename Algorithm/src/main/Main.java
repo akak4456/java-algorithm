@@ -16,62 +16,51 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
-class Pair implements Comparable<Pair>{
-	int first;
-	int last;
-	public Pair(int first, int last) {
-		this.first = first;
-		this.last = last;
-	}
-	@Override
-	public int compareTo(Pair o) {
-		if(o.last == this.last) {
-			return this.first - o.first;
-		}
-		return o.last - this.last;
-	}
-}
 public class Main {
-	private static int N;
-	private static int[] arr;
-	private static ArrayList<Pair> most;
+	private static int M;
+	private static Set<Integer> s;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		// StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(br.readLine());
-		arr = new int[N];
-		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(br.readLine());
-		}
-		Arrays.sort(arr);
-		double sum = 0;
-		for(int i=0;i<N;i++) {
-			sum += arr[i];
-		}
-		System.out.println((int)Math.round(sum / N));
-		System.out.println(arr[N/2]);
-		int cnt = 1;
-		int val = arr[0];
-		most = new ArrayList<>();
-		for(int i=1;i<N;i++) {
-			if(val != arr[i]) {
-				most.add(new Pair(val, cnt));
-				cnt = 1;
-				val = arr[i];
-			} else {
-				cnt++;
+		M = Integer.parseInt(br.readLine());
+		s = new HashSet<>();
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<M;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String op = st.nextToken();
+			if(op.equals("add")) {
+				int x = Integer.parseInt(st.nextToken());
+				s.add(x);
+			}
+			if(op.equals("remove")) {
+				int x = Integer.parseInt(st.nextToken());
+				s.remove(x);
+			}
+			if(op.equals("check")) {
+				int x = Integer.parseInt(st.nextToken());
+				if(s.contains(x)) {
+					sb.append("1\n");
+				} else {
+					sb.append("0\n");
+				}
+			}
+			if(op.equals("toggle")) {
+				int x = Integer.parseInt(st.nextToken());
+				if(s.contains(x)) {
+					s.remove(x);
+				} else {
+					s.add(x);
+				}
+			}
+			if(op.equals("all")) {
+				for(int t=1;t<=20;t++) {
+					s.add(t);
+				}
+			}
+			if(op.equals("empty")) {
+				s.clear();
 			}
 		}
-		most.add(new Pair(val, cnt));
-		Collections.sort(most);
-//		for(int i=0;i<most.size();i++) {
-//			System.out.println(most.get(i).first + " " + most.get(i).last);
-//		}
-		if(most.size() >= 2 && most.get(0).last == most.get(1).last) {
-			System.out.println(most.get(1).first);
-		} else {
-			System.out.println(most.get(0).first);
-		}
-		System.out.println(arr[N-1] - arr[0]);
+		System.out.println(sb);
 	}
 }
