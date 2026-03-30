@@ -17,50 +17,37 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 public class Main {
-	private static int M;
-	private static Set<Integer> s;
+	private static int N, M;
+	private static Map<String, Integer> stoi;
+	private static Map<Integer, String> itos;
+	private static int getNumber(String str) {
+		try {
+			int a = Integer.parseInt(str);
+			return a;
+		} catch (NumberFormatException e) {
+			return -1;
+		}
+	}
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// StringTokenizer st = new StringTokenizer(br.readLine());
-		M = Integer.parseInt(br.readLine());
-		s = new HashSet<>();
-		StringBuilder sb = new StringBuilder();
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		stoi = new HashMap<>();
+		itos = new HashMap<>();
+		for(int i=1;i<=N;i++) {
+			String str = br.readLine();
+			stoi.put(str, i);
+			itos.put(i, str);
+		}
 		for(int i=0;i<M;i++) {
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			String op = st.nextToken();
-			if(op.equals("add")) {
-				int x = Integer.parseInt(st.nextToken());
-				s.add(x);
-			}
-			if(op.equals("remove")) {
-				int x = Integer.parseInt(st.nextToken());
-				s.remove(x);
-			}
-			if(op.equals("check")) {
-				int x = Integer.parseInt(st.nextToken());
-				if(s.contains(x)) {
-					sb.append("1\n");
-				} else {
-					sb.append("0\n");
-				}
-			}
-			if(op.equals("toggle")) {
-				int x = Integer.parseInt(st.nextToken());
-				if(s.contains(x)) {
-					s.remove(x);
-				} else {
-					s.add(x);
-				}
-			}
-			if(op.equals("all")) {
-				for(int t=1;t<=20;t++) {
-					s.add(t);
-				}
-			}
-			if(op.equals("empty")) {
-				s.clear();
+			String str = br.readLine();
+			int a = getNumber(str);
+			if(a == -1) {
+				System.out.println(stoi.get(str));
+			} else {
+				System.out.println(itos.get(a));
 			}
 		}
-		System.out.println(sb);
 	}
 }
