@@ -18,36 +18,25 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 public class Main {
 	private static int N, M;
-	private static Map<String, Integer> stoi;
-	private static Map<Integer, String> itos;
-	private static int getNumber(String str) {
-		try {
-			int a = Integer.parseInt(str);
-			return a;
-		} catch (NumberFormatException e) {
-			return -1;
-		}
-	}
+	private static Set<String> s1;
+	private static Set<String> s2;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
-		stoi = new HashMap<>();
-		itos = new HashMap<>();
-		for(int i=1;i<=N;i++) {
+		s1 = new HashSet<>();
+		s2 = new HashSet<>();
+		for(int i=0;i<N;i++) {
 			String str = br.readLine();
-			stoi.put(str, i);
-			itos.put(i, str);
+			s1.add(str);
 		}
 		for(int i=0;i<M;i++) {
 			String str = br.readLine();
-			int a = getNumber(str);
-			if(a == -1) {
-				System.out.println(stoi.get(str));
-			} else {
-				System.out.println(itos.get(a));
-			}
+			s2.add(str);
 		}
+		s1.retainAll(s2);
+		System.out.println(s1.size());
+		s1.stream().sorted().forEach((str) -> System.out.println(str));
 	}
 }
