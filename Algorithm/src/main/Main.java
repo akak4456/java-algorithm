@@ -17,26 +17,24 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 public class Main {
-	private static int N, M;
-	private static Set<String> s1;
-	private static Set<String> s2;
+	private static int N, K;
+	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		s1 = new HashSet<>();
-		s2 = new HashSet<>();
+		K = Integer.parseInt(st.nextToken());
+		arr = new int[N];
 		for(int i=0;i<N;i++) {
-			String str = br.readLine();
-			s1.add(str);
+			arr[i] = Integer.parseInt(br.readLine());
 		}
-		for(int i=0;i<M;i++) {
-			String str = br.readLine();
-			s2.add(str);
+		int cnt = 0;
+		for(int i=N-1;i>=0;i--) {
+			while(arr[i] <= K) {
+				cnt++;
+				K -= arr[i];
+			}
 		}
-		s1.retainAll(s2);
-		System.out.println(s1.size());
-		s1.stream().sorted().forEach((str) -> System.out.println(str));
+		System.out.println(cnt);
 	}
 }
