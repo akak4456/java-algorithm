@@ -17,24 +17,23 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 public class Main {
-	private static int N, K;
+	private static int N;
 	private static int[] arr;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		N = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
+		N = Integer.parseInt(br.readLine());
 		arr = new int[N];
+		StringTokenizer st = new StringTokenizer(br.readLine());
 		for(int i=0;i<N;i++) {
-			arr[i] = Integer.parseInt(br.readLine());
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		int cnt = 0;
-		for(int i=N-1;i>=0;i--) {
-			while(arr[i] <= K) {
-				cnt++;
-				K -= arr[i];
-			}
+		Arrays.sort(arr);
+		int cur = 0;
+		int sum = 0;
+		for(int i=0;i<N;i++) {
+			cur += arr[i];
+			sum += cur;
 		}
-		System.out.println(cnt);
+		System.out.println(sum);
 	}
 }
